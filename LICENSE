@@ -1,0 +1,254 @@
+MICROFLOW-L2 — EVALUATION PERMISSION AND FULL-PRODUCT LICENSE
+
+PART A — FREE EVALUATION PERMISSION
+Version 1.0.0 — November 2026
+
+A1. SCOPE AND PERMISSIONS
+The Author, contact microflowl2@proton.me, permits recipients to download,
+make private copies of, and run the supplied Windows or Linux evaluation
+executable and accompanying client.py and print_feats.py examples to evaluate
+MicroFlow-L2 before purchase. No payment is required.
+
+Recipients may inspect and adapt the supplied Python readers for their own
+private evaluation of the demo. A purchaser's use and modification of the
+paid product's supplied clients is governed by Part B. The readers have not
+been assigned a separate general-purpose open-source license. This permission
+does not claim rights over independently written clients or independently
+created ideas, methods, strategies, or analysis.
+
+Each launch starts a new 15-minute evaluation session. Restarting resets the
+in-memory calculation state. The package provides the two fixed instruments
+and four fixed outputs described in README.md. No permission to remove the
+evaluation limits or obtain the proprietary C++ source is granted here.
+
+A2. SHARING
+Share the Author's official demo repository/download link rather than
+re-uploading the engine, repackaging the evaluation package, or publishing
+copies of the Author's supplied reader sources. Redistribution or commercial
+repackaging of the Author's original demo files is not authorized without
+written permission. Private evaluation copies remain permitted under A1.
+These restrictions do not limit mandatory rights or permissions independently
+granted by third-party licenses.
+
+A3. NO PURCHASE BY EVALUATION
+Downloading or running the demo does not constitute a purchase, an obligation
+to pay, or by itself acceptance of a paid commercial agreement. The paid
+source-code product requires the separate written purchase and acceptance
+process in Part B and README.md. This evaluation permission neither replaces
+nor limits a purchaser's paid-product rights under the applicable agreement.
+
+A4. EVALUATION LIMITATIONS
+The demo ingests public market data and exposes implementation measurements.
+It does not execute orders, manage funds, or provide personalized investment
+advice. No profitability, predictive accuracy, freedom from errors, universal
+compatibility, or fitness for a particular application is promised. Outputs
+may be stale, incomplete, or unsuitable. Independently assess outputs before
+relying on them and comply with applicable laws and third-party data terms.
+README.md describes the documented platforms, initialization, shared-memory
+usage, and limits of the tests performed.
+
+Except for express commitments and obligations imposed by law, the evaluation
+package is provided "AS IS" and "AS AVAILABLE". To the extent permitted by law,
+the Author disclaims implied warranties and liability for indirect or
+consequential loss, lost profits, trading losses, and data loss arising from
+this free evaluation. Nothing here excludes fraud, mandatory rights, or any
+liability that cannot lawfully be excluded. The commercial compilation remedy
+is not a warranty or support commitment for this free demo.
+
+A5. THIRD-PARTY COMPONENTS
+Third-party components retain their own licenses. See third_party_licenses/
+and the component-specific notices supplied with the release. This evaluation
+permission and Part B apply to the Author's original work and do not replace
+third-party terms, restrict independently granted rights, or grant ownership
+of exchange data. Preserve applicable notices.
+
+======================================================================
+PART B — FULL PRODUCT COMMERCIAL LICENSE — PRE-PURCHASE REVIEW
+======================================================================
+
+The following commercial license applies to the paid source-code product,
+not to the free evaluation permission above. It is supplied before payment.
+Running the demo does not by itself create a paid agreement.
+
+Commercial Section 5 covers the specified Windows and Ubuntu
+compilation/linking environments and defines the reporting requirements.
+It does not cover every Linux distribution. Later document versions
+do not automatically alter an existing purchase.
+
+MICROFLOW-L2 COMMERCIAL ENTITY SOURCE-CODE LICENSE
+Version 1.0.0 — November 2026
+
+1. AGREEMENT AND DELIVERY
+"Author" means the developer offering MicroFlow-L2, contact:
+[microflowl2@proton.me](mailto:microflowl2@proton.me).
+"Licensee" means the purchaser entity identified by email and GitHub username in
+the purchase confirmation. Where the Licensee is a natural person, references to
+the Licensee include that person.
+"Software" means the supplied original source, client, build files and
+documentation; third-party components retain their own licenses.
+The Author supplies this LICENSE and the applicable README before payment.
+Written acceptance, payment instructions and the expected delivery period are
+recorded by email. Immediate digital delivery requires separate express consent
+and acknowledgment of any resulting loss of a cancellation right where lawful.
+The Author confirms the agreed documents and acknowledgments by email.
+If access cannot be delivered within the agreed period, the purchaser may agree
+to an extension or request return of the payment.
+
+2. COMMERCIAL ENTITY LICENSE
+After verified payment, the Author grants the Licensee a non-exclusive,
+non-transferable, non-sublicensable license to inspect, compile, modify and run
+the Software for the Licensee's internal learning, research, development and
+lawful trading solely for the Licensee's own account.
+If the Licensee is a company, fund or other organization, its employees,
+contractors and collaborators may access and use the Software solely for that
+Licensee's internal purposes. Multiple private copies, machines and Python
+consumer processes are permitted.
+Use for the benefit of another entity, client or third party is not included.
+The license to an obtained version is perpetual unless terminated for breach.
+Ownership of the Author's original Software remains with the Author.
+
+3. RESTRICTIONS AND OUTPUTS
+Do not redistribute, resell, rent, publish or disclose proprietary source,
+modified versions or repository access outside the Licensee's authorized
+internal personnel.
+Do not offer a hosted engine or submit proprietary source to third-party AI
+training or code-generation services without written permission.
+Preserve applicable notices.
+Limited examples, charts and derived results may be shared free of charge for
+genuine educational explanation, without source disclosure or a recurring public
+data service. Commercial feeds, signal services and other third-party products
+based on the Outputs are not licensed.
+Own-account trading is permitted even when conducted for profit.
+These permissions do not grant rights over Binance or other third-party data.
+The Author does not claim ownership of independently created strategies,
+analysis or commentary merely because the Software was used.
+
+4. SCOPE AND FINANCIAL RESPONSIBILITY
+The Software ingests public market data and calculates features. It does not
+execute orders, manage funds or provide personalized investment advice.
+No profit, predictive accuracy, loss avoidance or fitness for a particular
+strategy is promised. The Licensee selects their integrations, safeguards and
+trading decisions. Benchmark timings are not financial-performance claims.
+The README describes initialization, statistical and operational limitations,
+including stale data, global rather than per-symbol health, and incomplete
+recovery of missed events. Binance availability and future API changes are
+outside the Author's control. The Licensee must comply with applicable exchange
+terms and laws.
+
+Although the supplied formulas, calculations and behavior are documented and have
+been reviewed, the Author does not warrant that the Software is free from
+mathematical, implementation, documentation or other errors. The Licensee is
+responsible for independently validating outputs before relying on them.
+
+5. COMPILATION REMEDY
+This additional commercial commitment covers the supplied unmodified release
+built for x86-64 AVX2/FMA in either of the following configurations:
+
+(a) Windows: Windows 11 with MSVC 19.51.36260.0, CMake 4.3.4, the Visual Studio
+18 2026 generator, Boost 1.92.0, OpenSSL 3.6.3 and simdjson 4.6.7 using
+x64-windows dependencies and the supplied instructions.
+
+(b) Ubuntu: Ubuntu 24.04 LTS x86-64, GCC/G++ 14.2.0, CMake 3.31.6, Boost 1.83.0
+(Ubuntu package series 1.83), OpenSSL 3.0.13 (Ubuntu package series), simdjson
+3.6.4, and a Release build with MICROFLOW_ARCH=avx2 using the supplied
+instructions. Ubuntu packaging/security revisions within those same upstream
+version series are included. Different upstream versions require written
+agreement to be included in this additional remedy.
+
+Other distributions, architectures, toolchains, configurations and user
+modifications are excluded from this additional commercial commitment unless
+expressly agreed in writing. A working evaluation binary is not proof that a
+purchaser's source-build environment matches a covered configuration.
+
+Report a covered compilation or linking failure within seven calendar days of
+usable repository access. Provide the release or commit identifier, commands,
+complete configuration and build logs, relevant environment and dependency
+versions, and sufficient reproduction details. Screenshots alone may be
+insufficient to establish the cause. The Author may request reasonable additional
+information or a clean-build retry necessary to investigate the failure.
+A successful build in the Author's environment does not, by itself, invalidate
+a reported failure.
+
+If the Author cannot resolve the covered defect within seven calendar days after
+receiving sufficient reproduction information, the Author will refund the
+license payment. Waiting for reasonably necessary information requested from
+the Licensee pauses that resolution period. Requests must relate to investigating
+or resolving the reported failure, not be used to defeat this remedy.
+
+This additional remedy concerns compilation and linking. It does not promise
+strategy results or uninterrupted third-party connectivity. Other express
+commitments and mandatory legal remedies remain unaffected.
+
+6. CORRECTIVE SUPPORT
+Available v1.x corrective releases are included without an additional fee.
+Support is asynchronous through email or private GitHub Issues and covers review
+of reproducible compilation defects, crashes, incorrect supported-message
+handling, incorrect publication and documented reconnection failures attributable
+to supplied code, plus suspected mathematical or documentation errors.
+Confirmed defects are addressed on a best-effort basis. Except for Section 5,
+no response or resolution deadline is promised. Corrections may change code,
+documentation or both; changing documentation alone does not remedy a material
+failure to deliver agreed functionality.
+New features, future major versions, new platforms, new models, future API
+adaptation, deployment, calls, strategy design and indefinite maintenance are
+not promised. Keep backups; repository hosting is not guaranteed indefinitely.
+Code or documentation contributions require a separate written agreement before
+incorporation. Feedback does not guarantee adoption or compensation.
+
+7. PAYMENT AND REFUNDS
+The price is USD 350. Before payment, the Author confirms the exact approved
+token amount, contract, network, receiving address and delivery period.
+The intended network is Arbitrum One, chain ID 42161. Only expressly approved
+USDC or USDT contracts are accepted. Unless agreed otherwise beforehand, payment
+must be one full transaction in one token, without split or mixed-token payments.
+The purchaser pays sending and withdrawal fees. Receipt requires verification
+of the actual transfer and finality, not a screenshot alone.
+Incorrect payments under the Author's control will be resolved by agreed
+completion or return of recoverable funds. Recovery outside that control is not
+guaranteed. Any proposed recovery charge must be lawful, reasonable and agreed.
+No voluntary change-of-mind refund is offered after access begins. This does not
+exclude Section 5, failure-to-deliver remedies or mandatory rights.
+Compilation refunds return the license token amount paid, ordinarily using the
+original approved token and network; the Author pays the outgoing network fee.
+A suitable destination is confirmed separately. A full refund ending the purchase
+ends the license and requires cessation of use and deletion of proprietary copies,
+subject to law. Each party remains responsible for its own legal and tax duties.
+
+8. WARRANTIES AND LIABILITY
+Except for express commitments and obligations imposed by law, the Software is
+provided "AS IS" and "AS AVAILABLE". To the extent permitted by applicable law,
+implied warranties of quality, merchantability, fitness and non-infringement
+are disclaimed. Universal compatibility and absence of every defect are not
+promised.
+To the extent permitted by law, the Author is not liable for indirect or
+consequential loss, lost profits, trading losses, lost opportunities, data loss
+or business interruption arising from the Software.
+Subject to mandatory law and the exceptions below, the Author's total aggregate
+liability arising from the Software or Agreement is limited to the license fee
+actually paid.
+Nothing excludes fraud, fraudulent misrepresentation, death or personal injury
+caused by negligence where exclusion is prohibited, mandatory digital-content
+rights, or any other liability that cannot lawfully be excluded or limited.
+Applicable fairness and reasonableness requirements remain in force.
+
+9. BREACH, DISPUTES AND GENERAL TERMS
+For a remediable material breach, the Author may give written notice and allow
+14 calendar days to remedy it. Access may be suspended to prevent continuing
+unauthorized disclosure. Deliberate unauthorized distribution, resale or access
+sharing may result in immediate termination. On termination, stop using and
+delete proprietary copies, subject to mandatory law.
+Raise disputes by email; the parties will attempt good-faith resolution for
+30 days without preventing urgent relief or missing legal deadlines.
+No exclusive forum or mandatory arbitration is designated. Applicable law and
+jurisdiction are determined under the applicable conflict-of-laws rules.
+The LICENSE, pre-purchase README and purchase confirmation form the agreement.
+The LICENSE governs legal permissions and obligations; the README describes
+functionality, limitations, covered configuration and support. Neither priority
+nor disclaimer excuses a materially inaccurate description.
+Later document versions do not automatically alter an existing purchase.
+Invalid terms are limited or removed only as law permits; the rest continues
+where possible. Third-party licenses remain unaffected.
+Purchase, payment, delivery and support records may be retained as reasonably
+necessary for administration, compliance and disputes. Public blockchain
+transactions are publicly visible. Contact the Author concerning these records.
+Custom work requires a separate written agreement.
