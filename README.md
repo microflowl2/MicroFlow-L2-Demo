@@ -435,10 +435,6 @@ These are assigned conventions, not measurements of confidence or certainty.
 
 ---
 
-<details>
-<summary>Feature reference: all 42 identifiers, formulas, interpretation, and current implementation limitations</summary>
-
-
 ## Reading the Feature Reference
 
 The definitions below describe the supplied implementation, including guards, initialization, and update clocks. They are implementation documentation, not an independent mathematical or financial audit.
@@ -1257,8 +1253,6 @@ Limitations:
 - Numerical floor of approximately 0.01 bps.
 - Same universe and freshness limitations as the transversal z-score.
 - Read separately from the matrix, without a guarantee that it belongs to a previously returned matrix sequence.
-
-</details>
 
 ---
 
