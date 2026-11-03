@@ -139,9 +139,9 @@ These are documented implementation measurements, not calibrated predictions or 
 
 #### `mid_price`
 
-\[
+$$
 M=(P_b+P_a)/2.
-\]
+$$
 
 The midpoint of the latest accepted best bid and ask. It is not necessarily executable and excludes fees, execution impact, and depth. It can become stale.
 
@@ -149,28 +149,28 @@ The midpoint of the latest accepted best bid and ask. It is not necessarily exec
 
 The quantity weights for the five parsed levels are `(1, 0.5, 0.25, 0.125, 0.0625)`:
 
-\[
+$$
 B=\sum_{\ell=1}^{5}w_\ell Q_\ell^b,\quad
 A=\sum_{\ell=1}^{5}w_\ell Q_\ell^a,\quad
 W=\operatorname{clip}((B-A)/(B+A),-1,1)
-\]
+$$
 
 when the denominator is positive. This is weighted shallow-book quantity imbalance, not full-book liquidity. The fixed weights are implementation choices, not calibrated predictive coefficients.
 
 #### `fast_ofi`
 
-\[
+$$
 d_k=\sum_{j\in\mathcal J_k}(W_j-W_{j-1}),\qquad
 f_k=0.10d_k+0.90f_{k-1}.
-\]
+$$
 
 It filters accumulated signed WOBI changes, not the WOBI level. Opposing changes can cancel; zero input causes decay. It is not canonical Level-1 OFI.
 
 #### `flow_toxicity`
 
-\[
+$$
 T_k=\left|\operatorname{clip}(F_k/\max(V_k,10^{-8}),-1,1)\right|.
-\]
+$$
 
 `F` and `V` are the implementation's decayed signed processed trade notional and volume measures. Initialization and per-evaluation decay affect interpretation. This is not VPIN, an adverse-selection probability, or a calibrated toxicity estimator.
 
