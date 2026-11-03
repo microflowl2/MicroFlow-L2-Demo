@@ -481,7 +481,9 @@ The export format is `float64`, but some parser-derived values use narrower inte
 Latest accepted best visible bid price.
 
 ```math
+$$
 P_b=P^b_1
+$$
 ```
 
 Purpose: inspect the displayed buying quote and provide inputs to mid-price and spread calculations.
@@ -493,7 +495,9 @@ Limitations: this is a stored quote from the most recent accepted depth message,
 Latest accepted base quantity at the best bid.
 
 ```math
+$$
 Q_b=Q^b_1
+$$
 ```
 
 Purpose: inspect displayed best-bid size.
@@ -505,7 +509,9 @@ Limitations: excludes hidden liquidity and deeper levels. Changes do not identif
 Latest accepted best visible ask price.
 
 ```math
+$$
 P_a=P^a_1
+$$
 ```
 
 Purpose: inspect the displayed selling quote.
@@ -517,7 +523,9 @@ Limitations: not a guaranteed executable price; may be stale by the time the con
 Latest accepted base quantity at the best ask.
 
 ```math
+$$
 Q_a=Q^a_1
+$$
 ```
 
 Purpose: inspect displayed best-ask size.
@@ -529,7 +537,9 @@ Limitations: excludes hidden and deeper liquidity and does not provide queue pos
 Before replacing the current accepted bid state, the previous stored bid price is copied here.
 
 ```math
+$$
 P^{b,\mathrm{prev}}_j=P^b_{j-1}
+$$
 ```
 
 Purpose: compare successive accepted depth states.
@@ -541,7 +551,9 @@ Limitations: “previous” means the previous accepted message, not a fixed-dur
 Previous stored best-bid quantity.
 
 ```math
+$$
 Q^{b,\mathrm{prev}}_j=Q^b_{j-1}
+$$
 ```
 
 Purpose: inspect changes in displayed bid size.
@@ -553,7 +565,9 @@ Limitations: a difference cannot distinguish cancellations from executions or ne
 Previous stored best-ask price.
 
 ```math
+$$
 P^{a,\mathrm{prev}}_j=P^a_{j-1}
+$$
 ```
 
 Purpose: compare successive accepted ask states.
@@ -565,7 +579,9 @@ Limitations: not a fixed-time lag or complete quote-event history.
 Previous stored best-ask quantity.
 
 ```math
+$$
 Q^{a,\mathrm{prev}}_j=Q^a_{j-1}
+$$
 ```
 
 Purpose: inspect displayed ask-size changes.
@@ -577,7 +593,9 @@ Limitations: no attribution to individual orders or event types.
 Arithmetic midpoint of best bid and ask.
 
 ```math
+$$
 M=\frac{P_b+P_a}{2}
+$$
 ```
 
 Purpose: a common reference for returns and cross-asset calculations.
@@ -589,8 +607,10 @@ Limitations: not necessarily tradable and does not account for depth, fees, or e
 Top-of-book quantity-weighted price:
 
 ```math
+$$
 P_{\mathrm{micro}}=
 \frac{P_bQ_a+P_aQ_b}{Q_b+Q_a}.
+$$
 ```
 
 It is updated when $Q_b+Q_a>0$.
@@ -604,7 +624,9 @@ Limitations: uses only best-level quantities. This is a particular weighted-pric
 Quoted spread normalized by the bid price:
 
 ```math
+$$
 S=10{,}000\frac{P_a-P_b}{P_b}.
+$$
 ```
 
 Purpose: inspect the quoted relative spread.
@@ -616,7 +638,9 @@ Limitations: the denominator is bid, not mid. It excludes fees, slippage, market
 Spread EWMA updated on accepted depth messages:
 
 ```math
+$$
 \bar S_j=0.05S_j+0.95\bar S_{j-1}.
+$$
 ```
 
 When the stored average is zero, the implementation initializes it to the current spread.
@@ -630,10 +654,12 @@ Limitations: smoothing runs on depth updates, not elapsed time. Instruments with
 Top-of-book quantity imbalance:
 
 ```math
+$$
 T=\text{clip}
 \left(
 \frac{Q_b-Q_a}{Q_b+Q_a},-1,1
 \right)
+$$
 ```
 
 when total best-level quantity is positive.
@@ -647,21 +673,27 @@ Limitations: not a directional forecast, order-arrival model, or measure of hidd
 Weighted quantity imbalance across parsed levels, using:
 
 ```math
+$$
 (w_1,w_2,w_3,w_4,w_5)
 =(1,0.5,0.25,0.125,0.0625).
+$$
 ```
 
 ```math
+$$
 B=\sum_{\ell=1}^{5}w_\ell Q_\ell^b,
 \qquad
 A=\sum_{\ell=1}^{5}w_\ell Q_\ell^a.
+$$
 ```
 
 ```math
+$$
 W=\text{clip}
 \left(
 \frac{B-A}{B+A},-1,1
 \right)
+$$
 ```
 
 when $B+A>0$.
@@ -675,7 +707,9 @@ Limitations: fixed weights are an implementation choice, not calibrated predicti
 WOBI stored before the latest accepted depth update:
 
 ```math
+$$
 W^{\mathrm{prev}}_j=W_{j-1}.
+$$
 ```
 
 Purpose: compare accepted imbalance states.
@@ -687,7 +721,9 @@ Limitations: not a fixed-duration lag. First-observation handling assigns the cu
 Signed WOBI differences are accumulated between evaluations:
 
 ```math
+$$
 d_k=\sum_{j\in\mathcal J_k}(W_j-W_{j-1}).
+$$
 ```
 
 The accumulator is copied into the exported calculation state and reset during evaluation.
@@ -701,15 +737,19 @@ Limitations: this is not absolute variation, trading volume, or canonical Level-
 Let:
 
 ```math
+$$
 D_b=\sum_{\ell=2}^{5}Q_\ell^b,
 \qquad
 D_a=\sum_{\ell=2}^{5}Q_\ell^a.
+$$
 ```
 
 Then:
 
 ```math
+$$
 D=\frac{D_b+D_a}{\max(Q_b+Q_a,10^{-6})}.
+$$
 ```
 
 Purpose: compare deeper displayed quantity with best-level quantity.
@@ -719,9 +759,11 @@ Limitations: quantity-based, not notional-based. A small guarded denominator can
 ### 18. `slope_bid`
 
 ```math
+$$
 L_b=
 \frac{D_b}
 {\max(P_b-P_{b,\mathrm{last}},10^{-6})}.
+$$
 ```
 
 Here $P_{b,\mathrm{last}}$ is the deepest parsed bid price used by the calculation.
@@ -733,9 +775,11 @@ Limitations: nominal slope, not a fitted regression or structural liquidity mode
 ### 19. `slope_ask`
 
 ```math
+$$
 L_a=
 \frac{D_a}
 {\max(P_{a,\mathrm{last}}-P_a,10^{-6})}.
+$$
 ```
 
 Purpose: the equivalent quantity-per-distance measure for asks.
@@ -745,12 +789,14 @@ Limitations: same floor and model limitations as the bid measure. Incomplete par
 ### 20. `slope_asymmetry`
 
 ```math
+$$
 A_L=
 \text{clip}
 \left(
 \frac{L_b-L_a}{\max(L_b+L_a,10^{-6})},
 -1,1
 \right).
+$$
 ```
 
 Purpose: compare the two nominal slopes on a normalized scale.
@@ -760,8 +806,10 @@ Limitations: not independent of the underlying quantities and distances. When bo
 ### 21. `micro_skew`
 
 ```math
+$$
 K=
 \frac{D_b-D_a}{D_b+D_a}
+$$
 ```
 
 when $D_b+D_a>0$, otherwise zero.
@@ -777,8 +825,10 @@ Limitations: despite its name, this is not statistical skewness and does not mea
 ### 22. `return_2s`
 
 ```math
+$$
 R_{2s}=
 \frac{M_{i,s}-M_{i,s-20}}{M_{i,s-20}}.
+$$
 ```
 
 Purpose: inspect a simple return against a 20-slot history reference.
@@ -788,8 +838,10 @@ Limitations: history slots are based on exchange depth timestamps. The value is 
 ### 23. `return_30s`
 
 ```math
+$$
 R_{30s}=
 \frac{M_{i,s}-M_{i,s-300}}{M_{i,s-300}}.
+$$
 ```
 
 Purpose: provide the return reference used by cross-sectional and adjusted-return calculations.
@@ -799,8 +851,10 @@ Limitations: not a forecast. Before a complete history is observed, the referenc
 ### 24. `return_90s`
 
 ```math
+$$
 R_{90s}=
 \frac{M_{i,s}-M_{i,s-900}}{M_{i,s-900}}.
+$$
 ```
 
 Purpose: inspect a longer history-grid return.
@@ -822,13 +876,17 @@ Limitations: may differ from current bid, ask, and mid. “Latest” refers to a
 For each processed trade:
 
 ```math
+$$
 n=pq.
+$$
 ```
 
 Cumulative quote notional $N$ is updated, and the calculation uses its interval difference:
 
 ```math
+$$
 V_k=0.95V_{k-1}+\Delta N_k.
+$$
 ```
 
 Purpose: inspect decayed processed trade notional.
@@ -842,17 +900,21 @@ For USDT-quoted instruments, this is USDT notional despite the `_usd` identifier
 Signed trade notional is:
 
 ```math
+$$
 g=
 \begin{cases}
 -pq,&\text{buyer is maker},\\
 +pq,&\text{buyer is taker}.
 \end{cases}
+$$
 ```
 
 With cumulative signed notional $G$:
 
 ```math
+$$
 F_k=0.95F_{k-1}+\Delta G_k.
+$$
 ```
 
 Purpose: inspect decayed taker-direction notional.
@@ -862,7 +924,9 @@ Limitations: not evidence of informed trading. The previous-cumulative-zero init
 ### 28. `avg_volume_usd`
 
 ```math
+$$
 A_k=0.02V_k+0.98A_{k-1}.
+$$
 ```
 
 If the previous baseline is zero, it is first initialized from current $V_k$.
@@ -874,12 +938,14 @@ Limitations: this smooths an already decayed quantity. It is not raw average vol
 ### 29. `signed_flow_ratio`
 
 ```math
+$$
 F^{\mathrm{ratio}}_k=
 \text{clip}
 \left(
 \frac{F_k}{\max(V_k,10^{-8})},
 -1,1
 \right).
+$$
 ```
 
 Purpose: normalize directional flow by the internal volume measure.
@@ -889,7 +955,9 @@ Limitations: clipping can hide discrepancies between the underlying accumulators
 ### 30. `volume_burst_ratio`
 
 ```math
+$$
 B_k=\frac{V_k}{\max(A_k,10^{-8})}.
+$$
 ```
 
 Purpose: compare current decayed activity with its smoothed baseline.
@@ -899,7 +967,9 @@ Limitations: dependent on initialization, nested smoothing, and the denominator 
 ### 31. `flow_toxicity`
 
 ```math
+$$
 T_k=\left|F^{\mathrm{ratio}}_k\right|.
+$$
 ```
 
 Purpose: inspect the magnitude of directional imbalance in the processed flow.
@@ -913,8 +983,10 @@ Limitations: not VPIN, adverse-selection probability, or a calibrated toxicity e
 ### 32. `fast_ofi`
 
 ```math
+$$
 f_k=0.10d_k+0.90f_{k-1},
 \qquad d_k=\text{delta_wobi}_k.
+$$
 ```
 
 Purpose: a faster exponentially weighted filter of changes in weighted book imbalance.
@@ -924,7 +996,9 @@ Limitations: not an EWMA of the imbalance level itself and not canonical Level-1
 ### 33. `slow_ofi`
 
 ```math
+$$
 g_k=0.01d_k+0.99g_{k-1}.
+$$
 ```
 
 Purpose: a slower reference filter of the same net WOBI-change input.
@@ -932,7 +1006,9 @@ Purpose: a slower reference filter of the same net WOBI-change input.
 Limitations: it does not measure “slow book imbalance” directly. It filters changes, not the WOBI level. With no new accumulated change:
 
 ```math
+$$
 g_k=0.99g_{k-1}.
+$$
 ```
 
 It is not canonical Level-1 OFI or a trading signal.
@@ -940,7 +1016,9 @@ It is not canonical Level-1 OFI or a trading signal.
 ### 34. `delta_ofi`
 
 ```math
+$$
 D^{\mathrm{filter}}_k=f_k-g_k.
+$$
 ```
 
 Purpose: compare faster and slower responses to the same imbalance-change sequence.
@@ -950,8 +1028,10 @@ Limitations: a difference of related filters, not an independent information sou
 ### 35. `idiosyncratic_ofi`
 
 ```math
+$$
 I^{\mathrm{ofi}}_{i,k}
 =f_{i,k}-\beta_{i,k}f_{0,k}.
+$$
 ```
 
 Purpose: explore an anchor-adjusted imbalance-filter value.
@@ -963,9 +1043,11 @@ Limitations: $\beta$ is estimated from returns, not from a regression of OFI-lik
 The beta calculation uses evaluation-to-evaluation stored mid-price changes:
 
 ```math
+$$
 r_{i,k}=
 \frac{M_{i,k}-L_{i,k}}
 {\max(L_{i,k},10^{-6})}.
+$$
 ```
 
 Here $L$ is the previous calculation's stored mid, with first-observation and rebase handling that can substitute the current mid and suppress a jump.
@@ -973,15 +1055,19 @@ Here $L$ is the previous calculation's stored mid, with first-observation and re
 With $\lambda=0.999$:
 
 ```math
+$$
 C_{i,k}=
 \lambda C_{i,k-1}
 +(1-\lambda)r_{i,k}r_{0,k},
+$$
 ```
 
 ```math
+$$
 U_{i,k}=
 \lambda U_{i,k-1}
 +(1-\lambda)r_{i,k}^{2}.
+$$
 ```
 
 These are uncentered moments: estimated means are not subtracted.
@@ -989,9 +1075,11 @@ These are uncentered moments: estimated means are not subtracted.
 ### 36. `dynamic_beta`
 
 ```math
+$$
 \beta_{i,k}=
 \frac{C_{i,k}}
 {\max(U_{0,k},10^{-16})}.
+$$
 ```
 
 Purpose: inspect the implementation's short-cadence relationship to the anchor.
@@ -1005,12 +1093,15 @@ The anchor value is set to 1.0.
 Let:
 
 ```math
+$$
 \widetilde U_{0,k}=\max(U_{0,k},10^{-16}).
+$$
 ```
 
 Then:
 
 ```math
+$$
 H_{i,k}=
 \text{clip}
 \left(
@@ -1018,6 +1109,7 @@ H_{i,k}=
 {\max(U_{i,k}\widetilde U_{0,k},10^{-30})},
 0,1
 \right).
+$$
 ```
 
 Purpose: inspect a normalized squared uncentered cross-moment diagnostic.
@@ -1031,7 +1123,9 @@ Non-anchor values are suppressed while the evaluation count is below 600. The an
 Exports $C_{i,k}$:
 
 ```math
+$$
 C_{i,k}=0.999C_{i,k-1}+0.001r_{i,k}r_{0,k}.
+$$
 ```
 
 Purpose: inspect the internal cross-moment used by beta.
@@ -1041,8 +1135,10 @@ Limitations: despite the name, it is not mean-centered covariance. It should not
 ### 39. `idiosyncratic_return`
 
 ```math
+$$
 I^{\mathrm{return}}_{i,k}
 =R_{30s,i}-\beta_{i,k}R_{30s,0}.
+$$
 ```
 
 Purpose: inspect a heuristic anchor-adjusted return.
@@ -1058,17 +1154,23 @@ Eligible symbols have stored mid-price greater than $10^{-6}$.
 For eligible 30-second returns $R_i$:
 
 ```math
+$$
 \mu=\frac{1}{n}\sum_i R_i,
+$$
 ```
 
 ```math
+$$
 v=\frac{1}{n}\sum_i(R_i-\mu)^2,
 \qquad
 \sigma=\sqrt{\max(v,10^{-12})},
+$$
 ```
 
 ```math
+$$
 z_i=\frac{R_i-\mu}{\sigma}.
+$$
 ```
 
 The implementation guards the count with a minimum of one; ineligible slots receive zero.
@@ -1092,6 +1194,7 @@ After the initial suppression period:
 ### 41. `cusum_pos`
 
 ```math
+$$
 S^+_{i,k}=
 \max\left(
 0,\,
@@ -1099,6 +1202,7 @@ S^+_{i,k}=
 +I_{i,k}q_{i,k}
 -0.5I_{i,k}\sigma_{i,k}
 \right).
+$$
 ```
 
 Purpose: visualize positive accumulation under this recurrence.
@@ -1108,6 +1212,7 @@ Limitations: not a confirmed trend, calibrated significance test, or instruction
 ### 42. `cusum_neg`
 
 ```math
+$$
 S^-_{i,k}=
 \max\left(
 0,\,
@@ -1115,6 +1220,7 @@ S^-_{i,k}=
 -I_{i,k}q_{i,k}
 -0.5I_{i,k}\sigma_{i,k}
 \right).
+$$
 ```
 
 Purpose: visualize negative accumulation under this recurrence.
@@ -1136,8 +1242,10 @@ Limitations: not a prediction, calibrated significance test, or instruction to s
 ## Separate Header Value: `market_dispersion`
 
 ```math
+$$
 \mathrm{dispersion}
 =10{,}000\sqrt{\max(v,10^{-12})},
+$$
 ```
 
 where $v$ is the population-style cross-sectional variance used above.
