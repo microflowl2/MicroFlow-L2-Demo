@@ -981,7 +981,7 @@ Limitations: not VPIN, adverse-selection probability, or a calibrated toxicity e
 ```math
 $$
 f_k=0.10d_k+0.90f_{k-1},
-\qquad d_k=\text{delta_wobi}_k.
+\qquad d_k=\text{delta\_wobi}_k.
 $$
 ```
 
